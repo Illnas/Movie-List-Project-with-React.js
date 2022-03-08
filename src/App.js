@@ -11,47 +11,50 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <>
-              <Index />
-            </>
-          }
-        />
+      <main>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <Index />
+              </>
+            }
+          />
 
-        <Route
-          exact
-          path="/favorites"
-          element={
-            <>
-              <Favorites />
-            </>
-          }
-        />
+          <Route
+            exact
+            path="/favorites"
+            element={
+              <>
+                <Favorites />
+              </>
+            }
+          />
 
-        <Route
-          exact
-          path="/add"
-          element={
-            <>
-              <Add />
-            </>
-          }
-        />
+          <Route
+            exact
+            path="/add"
+            element={
+              <>
+                <Add />
+              </>
+            }
+          />
 
-        <Route
-          exact
-          path="/search"
-          element={
-            <>
-              <Search />
-            </>
-          }
-        />
-      </Routes>
+          <Route
+            exact
+            path="/search"
+            element={
+              <>
+                <Search />
+              </>
+            }
+          />
+        </Routes>
+      </main>
+
       <Footer />
     </>
   );
