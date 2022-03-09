@@ -3,7 +3,7 @@ import ArticleImage from "./ArticleImage";
 import ArticleTitle from "./ArticleTitle";
 
 const MovieArticle = (props) => {
-  console.log(props);
+/*   console.log(props); */
   const didWatch = () => {
     return (
       <svg

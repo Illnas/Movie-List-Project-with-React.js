@@ -6,12 +6,13 @@ import Add from "./components/views/Add";
 import Favorites from "./components/views/Favorites";
 import Index from "./components/views/Index";
 import Search from "./components/views/Search";
+import Playground from "./components/playground/Playground";
 
 function App() {
   return (
     <>
       <Header />
-      <main>
+    {/*   <main>
         <Routes>
           <Route
             exact
@@ -54,8 +55,10 @@ function App() {
           />
         </Routes>
       </main>
+ */}
+ <Playground />
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

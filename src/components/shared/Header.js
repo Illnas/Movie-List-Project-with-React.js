@@ -9,7 +9,7 @@ const Header = () => {
 
       <ul>
         <li>
-          <Link to="/">All Movies</Link>
+          <Link autoFocus to="/">All Movies</Link>
         </li>
         <li>
           <Link to="/favorites">Favorites</Link>
