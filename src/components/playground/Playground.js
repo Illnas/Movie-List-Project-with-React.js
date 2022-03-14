@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import DriversLicense from "./DriversLicense";
 import Sandbox from "./Sandbox";
 
 const Playground = () => {
@@ -42,41 +43,25 @@ const Playground = () => {
     favorites: ["Heal", "Greater Heal", "Serenity"],
   };
 
-  const [driver, setDriver] = useState({
-    name: "Driver Name",
-    surname: "Driver Surname",
-    adress: "Driver Adress"
-})
+  const [hide, setHide] = useState(false)
+  const hideDriver = () => {
+    setHide(!hide)
+  }
 
-  const handleUpdate = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-
-    setDriver((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-
-    /*  if(name === "name") {
-        setProduct(prevValues => ({
-            ...prevValues, 
-            name: value
-          }))
-      }
-
-      if(name === "desc") {
-        setProduct(prevValues => ({
-            ...prevValues, 
-            descriptions: value
-          }))
-      } */
-  };
-
-
+/*   useEffect(() => {
+    console.log("Mijenjam komponentu")
+  }, [hide]) */
 
   return (
     <div>
-{/*       <h4>Product name: {product.name}</h4>
+      <button onClick={() => hideDriver()}>Hide Drivers Licence</button>
+      {hide && (
+        <DriversLicense hide={hide}/>
+      )}
+      
+      
+
+      {/*       <h4>Product name: {product.name}</h4>
       <h4>Product description: {product.descriptions}</h4>
       <h4>Product price: {product.price}</h4>
 
@@ -116,47 +101,7 @@ const Playground = () => {
       <br />
       <hr />
 
-      <div>
-      <label htmlFor="">Ime: </label>
-        <input
-          onChange={(e) => handleUpdate(e)}
-          type="text"
-          value={driver.name}
-          name="name"
-        />
-        <hr />
-        <br />
-
-        <label htmlFor="">Prezime: </label>
-        <input
-          onChange={(e) => handleUpdate(e)}
-          type="text"
-          name="surname"
-          value={driver.surname}
-        />
-        <hr />
-        <br />
-
-        <label htmlFor="">Adresa: </label>
-        <input
-          onChange={(e) => handleUpdate(e)}
-          type="text"
-          value={driver.adress}
-          name="adress"
-        />
-        <hr />
-        <br />
-      </div>
-
-
-      <div>
-      <h4>Name: {driver.name}</h4>
-      <h4>Surname: {driver.surname}</h4>
-      <h4>Address: {driver.adress}</h4>
-      </div>
-
-      <hr />
-      <br />
+    
       <input
         type="text"
         placeholder="Upiši ime i prezime"

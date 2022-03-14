@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-    {/*   <main>
+    <main>
         <Routes>
           <Route
             exact
@@ -55,10 +55,10 @@ function App() {
           />
         </Routes>
       </main>
- */}
- <Playground />
+ 
+ {/* <Playground /> */}
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -15,30 +15,17 @@ const Index = () => {
 
   return (
     <div className="article-container">
-      <MovieArticle
-        movieName={movieArray[0].movieName}
-        movieYear={movieArray[0].movieYear}
+
+      {movieArray.map(e =>
+          <MovieArticle
+          key={movieArray.indexOf(e)}
+        movieName={e.movieName}
+        movieYear={e.movieYear}
       
       />
-      <MovieArticle
-        movieName={movieArray[1].movieName}
-        movieYear={movieArray[1].movieYear}
-
-      />
-      <MovieArticle
-        movieName={movieArray[2].movieName}
-        movieYear={movieArray[2].movieYear}
-
-      />
-      <MovieArticle
-        movieName={movieArray[3].movieName}
-        movieYear={movieArray[3].movieYear}
-
-      />
-      <MovieArticle
-        movieName={movieArray[4].movieName}
-        movieYear={movieArray[4].movieYear}
-      />
+      )}
+    
+    
     </div>
   );
 };
