@@ -5,6 +5,8 @@ const DriversLicense = (props) => {
     name: "Driver Name",
     surname: "Driver Surname",
     adress: "Driver Adress",
+    birthday: "1928",
+    brojCipela: 28,
   });
 
   const handleUpdate = (event) => {
@@ -58,13 +60,15 @@ const DriversLicense = (props) => {
   };
 
   useEffect(() => {
-      console.log("Gotcha")
-      alert("Gotcha bish!")
+    console.log("Gotcha");
+    alert("Gotcha bish!");
 
-      return () => {
-          console.log("Component did unmount")
-      }
-  }, [])
+    return () => {
+      console.log("Component did unmount");
+    };
+  }, []);
+
+  const [buttonArray, setButtonArray] = useState(["A1", "A", "B", "C", "C1"]);
 
   // disabled = {size.includes("s")} === ovo vrace ili false ili true, sto pase sa ovim disabled
 
@@ -109,11 +113,11 @@ const DriversLicense = (props) => {
         <hr />
         <br />
         Categories: <span></span>
-        <button onClick={() => handleDrivers("A1")}>A1</button>
-        <button onClick={() => handleDrivers("A")}>A</button>
-        <button onClick={() => handleDrivers("B")}>B</button>
-        <button onClick={() => handleDrivers("C1")}>C1</button>
-        <button onClick={() => handleDrivers("C")}>C</button>
+        {buttonArray.map((e) => (
+          <button key={buttonArray.indexOf(e)} onClick={() => handleDrivers(e)}>
+            {e}
+          </button>
+        ))}
         <hr />
         <br />
       </div>
@@ -122,11 +126,42 @@ const DriversLicense = (props) => {
         <h4>Name: {driver.name}</h4>
         <h4>Surname: {driver.surname}</h4>
         <h4>Address: {driver.adress}</h4>
-        <h4>Category: {categories} </h4>
+        <h4>Category: </h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Redni Broj</th>
+              <th>Categories</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {categories.map((e) => (
+              <tr key={categories.indexOf(e)}>
+                <td>{categories.indexOf(e)}</td>
+                <td>{e}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <hr />
       <br />
+
+      <table>
+        <tbody>
+          {Object.keys(driver).map((e, i) => (
+            <tr key={i}>
+              <td>{e}</td>
+              <td>{driver[e]}</td>
+            </tr>
+          ))}
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -43,23 +43,68 @@ const Playground = () => {
     favorites: ["Heal", "Greater Heal", "Serenity"],
   };
 
-  const [hide, setHide] = useState(false)
+  const [hide, setHide] = useState(false);
   const hideDriver = () => {
-    setHide(!hide)
-  }
+    setHide(!hide);
+  };
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     console.log("Mijenjam komponentu")
   }, [hide]) */
 
+  const [inputValues, setInputValues] = useState({
+    firstValue: "",
+    secondValue: "",
+    thirdValue: "",
+  });
+
+  const [tableState, setTableState] = useState(false);
+
+  const handleSecondSubmit = (e) => {
+e.preventDefault()
+    setInputValues({
+      firstValue: "",
+      secondValue: "",
+      thirdValue: "",
+    });
+  };
+
+  const handleSecondChanges = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    console.log(value);
+    setInputValues((oldValues) => ({
+      ...oldValues,
+      [name]: value,
+    }));
+  };
+
   return (
     <div>
+      <form onSubmit={(e) => handleSecondSubmit(e)}>
+        <input
+          type="text"
+          name="firstValue"
+          value={inputValues.firstValue}
+          onChange={(e) => handleSecondChanges(e)}
+        />
+        <input
+          type="text"
+          name="secondValue"
+          value={inputValues.secondValue}
+          onChange={(e) => handleSecondChanges(e)}
+        />
+        <input
+          type="text"
+          name="thirdValue"
+          value={inputValues.thirdValue}
+          onChange={(e) => handleSecondChanges(e)}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+
       <button onClick={() => hideDriver()}>Hide Drivers Licence</button>
-      {hide && (
-        <DriversLicense hide={hide}/>
-      )}
-      
-      
+      {hide && <DriversLicense hide={hide} />}
 
       {/*       <h4>Product name: {product.name}</h4>
       <h4>Product description: {product.descriptions}</h4>
@@ -101,7 +146,6 @@ const Playground = () => {
       <br />
       <hr />
 
-    
       <input
         type="text"
         placeholder="Upiši ime i prezime"

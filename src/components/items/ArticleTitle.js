@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { fontSizeContent } from '../../App'
 
 const ArticleTitle = (props) => {
+
+  const fontSize = useContext(fontSizeContent) 
+  const [fontSizeVal, setFontSizeVal] = useState(fontSize)
+  console.log(fontSize)
+
   return (
     <div className='details'>
       <h3>
