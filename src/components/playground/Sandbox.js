@@ -1,4 +1,5 @@
 import React from 'react'
+import Hocc from './Hocc'
 
 const Sandbox = (props) => {
 
@@ -16,6 +17,10 @@ const Sandbox = (props) => {
             <div>
                 Ime i prezime korisnika: {props.name}
             </div>
+            <br />
+            <hr />
+
+            <Hocc />
         </div>
     )
 }

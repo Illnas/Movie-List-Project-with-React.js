@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArticleImage from "./ArticleImage";
 import ArticleTitle from "./ArticleTitle";
+import { themeContext } from "../../App";
 
 const MovieArticle = (props) => {
+
+  const theme = useContext(themeContext)
+  console.log(theme)
+  
+  const darkTheme = {
+    backgroundColor: "#fff",
+    color: "#000"
+  }
+
+    
+  const lightTheme = {
+    backgroundColor: "#000",
+    color: "#fff"
+  }
+
 /*   console.log(props); */
   const didWatch = () => {
     return (
@@ -39,7 +55,7 @@ const MovieArticle = (props) => {
   };
 
   return (
-    <article>
+    <article style={theme ? lightTheme : darkTheme}>
       <ArticleImage />
       <ArticleTitle movieName={props.movieName} movieYear={props.movieYear} />
       <div className="svg-container">

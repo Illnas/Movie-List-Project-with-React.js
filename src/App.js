@@ -7,17 +7,25 @@ import Favorites from "./components/views/Favorites";
 import Index from "./components/views/Index";
 import Search from "./components/views/Search";
 import Playground from "./components/playground/Playground";
+import { Button } from "@mui/material"
 
-export const fontSizeContent = React.createContext();
+export const fontSizeContent = createContext();
+export const themeContext = createContext();
 
 function App() {
   const [isSmall, setIsSmall] = useState(false);
+  const [color, setColor] = useState(false)
+
+  const colorChanger = () => {
+    setColor(!color)
+  } 
 
   return (
     <>
-      <fontSizeContent.Provider value={isSmall}>
+      <themeContext.Provider value={color}>
         <Header />
-        <main>
+       <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button>
+{/*         <main>
           <Routes>
             <Route
               exact
@@ -59,12 +67,12 @@ function App() {
               }
             />
           </Routes>
-        </main>
+        </main> */}
 
-        {/*  <Playground /> */}
+         <Playground />
 
         <Footer />
-      </fontSizeContent.Provider>
+      </themeContext.Provider>
     </>
   );
 }

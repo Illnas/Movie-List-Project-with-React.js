@@ -3,9 +3,9 @@ import { fontSizeContent } from '../../App'
 
 const ArticleTitle = (props) => {
 
-  const fontSize = useContext(fontSizeContent) 
-  const [fontSizeVal, setFontSizeVal] = useState(fontSize)
-  console.log(fontSize)
+/*   const fontSize = useContext(fontSizeContent) 
+  const [fontSizeVal, setFontSizeVal] = useState(fontSize) */
+
 
   return (
     <div className='details'>
