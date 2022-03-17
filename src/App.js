@@ -7,25 +7,25 @@ import Favorites from "./components/views/Favorites";
 import Index from "./components/views/Index";
 import Search from "./components/views/Search";
 import Playground from "./components/playground/Playground";
-import { Button } from "@mui/material"
+import MovieDetails from "./components/views/MovieDetails";
 
 export const fontSizeContent = createContext();
 export const themeContext = createContext();
 
 function App() {
   const [isSmall, setIsSmall] = useState(false);
-  const [color, setColor] = useState(false)
+  const [color, setColor] = useState(false);
 
   const colorChanger = () => {
-    setColor(!color)
-  } 
+    setColor(!color);
+  };
 
   return (
     <>
       <themeContext.Provider value={color}>
         <Header />
-       <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button>
-{/*         <main>
+        {/*     <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button> */}
+        <main>
           <Routes>
             <Route
               exact
@@ -43,6 +43,16 @@ function App() {
               element={
                 <>
                   <Favorites />
+                </>
+              }
+            />
+
+            <Route
+              exact
+              path="/details/:id"
+              element={
+                <>
+                  <MovieDetails />
                 </>
               }
             />
@@ -67,9 +77,9 @@ function App() {
               }
             />
           </Routes>
-        </main> */}
+        </main>
 
-         <Playground />
+        {/*     <Playground /> */}
 
         <Footer />
       </themeContext.Provider>

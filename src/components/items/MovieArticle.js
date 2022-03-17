@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import ArticleImage from "./ArticleImage";
 import ArticleTitle from "./ArticleTitle";
 import { themeContext } from "../../App";
+import Card from '@mui/material/Card';
+
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const MovieArticle = (props) => {
 
@@ -55,13 +59,16 @@ const MovieArticle = (props) => {
   };
 
   return (
-    <article style={theme ? lightTheme : darkTheme}>
-      <ArticleImage />
-      <ArticleTitle movieName={props.movieName} movieYear={props.movieYear} />
-      <div className="svg-container">
+    <>
+    <Card sx={{ maxWidth: 345 }}>
+    <ArticleImage />
+    <ArticleTitle movieName={props.movieName} movieYear={props.movieYear} id={props.id}/>
+    <div className="svg-container">
         {props.movieWatched ? didWatch() : didNotWatch()}
       </div>
-    </article>
+    </Card>
+    </>
+  
   );
 };
 
