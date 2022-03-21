@@ -61,7 +61,7 @@ const MovieArticle = (props) => {
   return (
     <>
     <Card sx={{ maxWidth: 345 }}>
-    <ArticleImage />
+    <ArticleImage movieImage={props.movieImage}/>
     <ArticleTitle movieName={props.movieName} movieYear={props.movieYear} id={props.id}/>
     <div className="svg-container">
         {props.movieWatched ? didWatch() : didNotWatch()}

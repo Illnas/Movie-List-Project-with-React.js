@@ -15,6 +15,7 @@ export const themeContext = createContext();
 function App() {
   const [isSmall, setIsSmall] = useState(false);
   const [color, setColor] = useState(false);
+  const [movieData, setMovieData] = useState()
 
   const colorChanger = () => {
     setColor(!color);
