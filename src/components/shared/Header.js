@@ -1,16 +1,60 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs, AppBar, Typography, Box } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import {
+  MemoryRouter,
+  Route,
+  Routes,
+  Link,
+  matchPath,
+  useLocation,
+} from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 
 const Header = () => {
   const [value, setValue] = React.useState(0);
-  const location = useLocation()
 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
+  function Router(props) {
+    const { children } = props;
+    if (typeof window === 'undefined') {
+      return <StaticRouter location="/">{children}</StaticRouter>;
+    }
+  
+    return (
+      <MemoryRouter initialEntries={['/']} initialIndex={0}>
+        {children}
+      </MemoryRouter>
+    );
+  }
+  
+  Router.propTypes = {
+    children: PropTypes.node,
+  };
+  
+  function useRouteMatch(patterns) {
+    const { pathname } = useLocation();
+  
+    for (let i = 0; i < patterns.length; i += 1) {
+      const pattern = patterns[i];
+      const possibleMatch = matchPath(pattern, pathname);
+      if (possibleMatch !== null) {
+        return possibleMatch;
+      }
+    }
+  
+    return null;
+  }
+
+  const routeMatch = useRouteMatch(["/", "/favorites", "/details/:id", "/add", "/search"]);
+  const currentTab = routeMatch?.pattern?.path;
+
+  
 
   return (
     <nav>
@@ -19,14 +63,12 @@ const Header = () => {
       </div>
       <Box>
         <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="nav tabs example"
+  value={currentTab}
         >
-          <Tab component={Link} label="Home" to="/" />
-          <Tab component={Link} label="Favorites" to="/favorites" />
-          <Tab component={Link} label="Add" to="/add" />
-          <Tab component={Link} label="Search" to="/search" />
+          <Tab component={Link} value="/" label="Home" to="/" />
+          <Tab component={Link} value="/favorites" label="Favorites" to="/favorites" />
+          <Tab component={Link} value="/add" label="Add" to="/add" />
+          <Tab component={Link} value="/search" label="Search" to="/search" />
         </Tabs>
       </Box>
     </nav>
