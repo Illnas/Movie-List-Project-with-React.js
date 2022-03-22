@@ -8,6 +8,8 @@ import Index from "./components/views/Index";
 import Search from "./components/views/Search";
 import Playground from "./components/playground/Playground";
 import MovieDetails from "./components/views/MovieDetails";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 
 export const fontSizeContent = createContext();
 export const themeContext = createContext();
@@ -15,7 +17,7 @@ export const themeContext = createContext();
 function App() {
   const [isSmall, setIsSmall] = useState(false);
   const [color, setColor] = useState(false);
-  const [movieData, setMovieData] = useState()
+  const [movieData, setMovieData] = useState();
 
   const colorChanger = () => {
     setColor(!color);
@@ -24,9 +26,10 @@ function App() {
   return (
     <>
       <themeContext.Provider value={color}>
-        <Header />
-        {/*     <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button> */}
-        <main>
+        <Provider store={store}>
+          <Header />
+          {/*     <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button> */}
+          {/*   <main>
           <Routes>
             <Route
               exact
@@ -79,10 +82,11 @@ function App() {
             />
           </Routes>
         </main>
+ */}
+          <Playground />
 
-        {/*     <Playground /> */}
-
-        <Footer />
+          <Footer />
+        </Provider>
       </themeContext.Provider>
     </>
   );

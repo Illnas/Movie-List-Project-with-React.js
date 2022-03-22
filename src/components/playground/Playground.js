@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Counter from "./Counter";
 import DriversLicense from "./DriversLicense";
+import AppWrap from "./graphql/AppWrap";
 import Sandbox from "./Sandbox";
 
 const Playground = () => {
@@ -81,6 +83,7 @@ e.preventDefault()
 
   return (
     <div>
+      <Counter />
       <form onSubmit={(e) => handleSecondSubmit(e)}>
         <input
           type="text"
@@ -164,6 +167,7 @@ e.preventDefault()
         discount={discount}
         name={name}
       />
+      <AppWrap />
     </div>
   );
 };

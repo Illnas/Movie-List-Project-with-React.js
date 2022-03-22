@@ -48,7 +48,7 @@ const Search = () => {
       <form onSubmit={(e) => handleSecondSubmit(e)}>
     
         <label htmlFor="">Search: </label>
-        <input onChange={(e) => movieSearch(e)} type="text" value={movieInput}/>
+        <input value={movieInput} onChange={(e) => movieSearch(e)} type="text" />
   
         <input type="submit" value="Submit" />
       </form>
