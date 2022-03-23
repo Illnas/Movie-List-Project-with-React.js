@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/shared/Footer";
 import Header from "./components/shared/Header";
@@ -13,81 +13,96 @@ import store from "./Redux/store";
 
 export const fontSizeContent = createContext();
 export const themeContext = createContext();
+export const movieContext = createContext();
 
 function App() {
   const [isSmall, setIsSmall] = useState(false);
   const [color, setColor] = useState(false);
-  const [movieData, setMovieData] = useState();
+  const [movieArr, setMovieArr] = useState([]);
 
   const colorChanger = () => {
     setColor(!color);
   };
 
+  useEffect(() => {
+    if(movieArr.length !== 0) {
+      localStorage.setItem("name", JSON.stringify(movieArr)); 
+    }
+    
+    const saved = localStorage.getItem("name");
+    const savedParsed = JSON.parse(saved);
+    
+    console.log(savedParsed)
+  }, [movieArr]);
+
+  
+
+
   return (
     <>
-      <themeContext.Provider value={color}>
+      <movieContext.Provider value={{ setMovieArr, movieArr }}>
         <Provider store={store}>
           <Header />
           {/*     <Button onClick={()=> colorChanger()} variant="contained">Color is {color ? "dark" : "light"}</Button> */}
-          {/*   <main>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <Index />
-                </>
-              }
-            />
+          <main>
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    <Index />
+                  </>
+                }
+              />
 
-            <Route
-              exact
-              path="/favorites"
-              element={
-                <>
-                  <Favorites />
-                </>
-              }
-            />
+              <Route
+                exact
+                path="/favorites"
+                element={
+                  <>
+                    <Favorites />
+                  </>
+                }
+              />
 
-            <Route
-              exact
-              path="/details/:id"
-              element={
-                <>
-                  <MovieDetails />
-                </>
-              }
-            />
+              <Route
+                exact
+                path="/details/:id"
+                element={
+                  <>
+                    <MovieDetails />
+                  </>
+                }
+              />
 
-            <Route
-              exact
-              path="/add"
-              element={
-                <>
-                  <Add />
-                </>
-              }
-            />
+              <Route
+                exact
+                path="/add"
+                element={
+                  <>
+                    <Add />
+                  </>
+                }
+              />
 
-            <Route
-              exact
-              path="/search"
-              element={
-                <>
-                  <Search />
-                </>
-              }
-            />
-          </Routes>
-        </main>
- */}
-          <Playground />
+              <Route
+                exact
+                path="/search"
+                element={
+                  <>
+                    <Search />
+                  </>
+                }
+              />
+            </Routes>
+          </main>
+
+          {/*        <Playground /> */}
 
           <Footer />
         </Provider>
-      </themeContext.Provider>
+      </movieContext.Provider>
     </>
   );
 }
