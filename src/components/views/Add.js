@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Box, TextField, FormControl, FormGroup, FormControlLabel, Switch, FormLabel, Button} from "@mui/material"
 import { movieContext } from "../../App";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Add = () => {
@@ -13,6 +14,9 @@ const Add = () => {
     Year: 0,
     Description: "",
     Favorites: false,
+    id: uuidv4(),
+    isWatched: false,
+    rate: null
   });
 
 
@@ -30,9 +34,14 @@ const Add = () => {
     setMoviesObj((oldObj) => ({
       ...oldObj,
       ["Favorites"]: checked,
+      ["id"]: uuidv4(),
     }));
+
+
   };
 
+
+    
 
 
   const addMovie = () => {
@@ -42,16 +51,29 @@ const Add = () => {
     ]))
   };
 
+  const removeMovie = (e) => {
+    
+    console.log(typeof movieArr["id"])
+    let filtered = movieArr.filter(id => id.id !== e)
+    
+    if(movieArr["id"] === undefined) {
+      localStorage.removeItem("name")
+    }
+
+    setMovieArr(filtered)
+  }
+
   
 
   return (
-    <Box
+    <>
+     <Box
       component="form"
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete="on"
     >
       <div>
         <TextField
@@ -105,6 +127,21 @@ const Add = () => {
         </Button>
       </FormControl>
     </Box>
+
+    <div>
+      {movieArr.map(e => (
+        <div key={e.id}>
+          <h2>{e["Name"]}</h2>
+          <h3>{e["Year"]}</h3>
+          <h4>{e["Description"]}</h4>
+          <h5>{e["Favorites"]}</h5>
+          <br />
+          <button onClick={() => removeMovie(e["id"])}>X</button>
+        </div>
+      ))}
+    </div>
+    </>
+   
   );
 };
 

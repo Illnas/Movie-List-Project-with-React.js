@@ -29,11 +29,16 @@ function App() {
       localStorage.setItem("name", JSON.stringify(movieArr)); 
     }
     
+  }, [movieArr]);
+
+  useEffect(() => {
     const saved = localStorage.getItem("name");
     const savedParsed = JSON.parse(saved);
-    
-    console.log(savedParsed)
-  }, [movieArr]);
+    if(savedParsed !== null) {
+      setMovieArr(savedParsed)
+    }
+  }, [])
+
 
   
 
